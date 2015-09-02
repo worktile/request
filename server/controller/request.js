@@ -148,6 +148,12 @@ var Request = function (config, logger, data) {
         res.render("index", {title: "首页"})
     };
 
+    /**
+     * Not Found Page
+     * @param req
+     * @param res
+     * @param next
+     */
     Request.prototype.notFound = function (req, res, next) {
         res.render("shared/404.html", {title: "首页"})
     }
