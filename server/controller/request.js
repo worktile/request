@@ -8,6 +8,22 @@ var Request = function (config, logger, data) {
     Base.call(this, config, logger, data);
 
     /**
+     * Check request
+     * @param req
+     * @param res
+     * @param next
+     */
+    Request.prototype.checkRequest = function (req, res, next) {
+        data.request.findById(req.params.id).then(function (request) {
+            if (request) {
+                next()
+            } else {
+                 res.render("shared/404",{title:"Not-Found"})
+            }
+        }, next);
+    };
+
+    /**
      * create request
      * @param req
      * @param res
@@ -51,7 +67,7 @@ var Request = function (config, logger, data) {
         data.inspect.create(inspect).then(function () {
             res.send("ok");
         }, function (err) {
-
+            next(err);
         });
     };
 
@@ -105,6 +121,8 @@ var Request = function (config, logger, data) {
                 };
             });
             res.send({code: 200, data: _inspects})
+        }, function (err) {
+            next(err);
         })
     };
 
@@ -121,7 +139,7 @@ var Request = function (config, logger, data) {
     };
 
     /**
-     * GET /
+     * GET / Home 首页
      * @param req
      * @param res
      * @param next
