@@ -28,3 +28,4 @@ node_modules
 .idea
 /data/database.sqlite
 www/static/bower_components
+www/static/css/*.css
