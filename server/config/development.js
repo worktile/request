@@ -10,7 +10,8 @@ var config = {
             idle: 10000
         },
         // SQLite only
-        storage: 'data/database.sqlite'
+        storage: 'data/database.sqlite',
+        logging:true
     },
     logger              : {
         level        : "info",
