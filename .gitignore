@@ -29,3 +29,7 @@ node_modules
 /data/database.sqlite
 www/static/bower_components
 www/static/css/*.css
+www/static/dist/*.css
+www/static/dist/*.js
+!www/static/dist/*.min.js
+!www/static/dist/*.min.css

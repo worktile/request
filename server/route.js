@@ -23,5 +23,4 @@ exports = module.exports = function (app, config, logger) {
 
     // Error handler
     app.use(handler.errorHandler);
-
 };
