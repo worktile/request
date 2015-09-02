@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= (locals.title || "") + " - " + locals.config.title %></title>
+    <link rel="stylesheet" type="text/css"
+          href="<%=locals.config.enableCompression ? '/dist/home.min.css':'/home/css/home.css'%>?v=<%=locals.config.version%>">
+    <link rel="Shortcut Icon" href="/favicon.ico">
+</head>
+<body>
+
+<%- body %>
+
+<%-include shared/footer.html%>
+
+</body>
+</html>
