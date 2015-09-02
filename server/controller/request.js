@@ -45,6 +45,8 @@ var Request = function (config, logger, data) {
         inspect.method = METHODS[req.method];
         data.inspect.create(inspect).then(function () {
             res.send("ok");
+        },function(err){
+
         });
     };
 
