@@ -7,6 +7,14 @@ var Base = require("./base"),
 var Request = function (config, logger, data) {
     Base.call(this, config, logger, data);
 
+    var incRequestCount = function (request) {
+        if (request) {
+            request.updateAttributes({
+                count: request.count + 1
+            });
+        }
+    };
+
     /**
      * Check request
      * @param req
@@ -16,9 +24,10 @@ var Request = function (config, logger, data) {
     Request.prototype.checkRequest = function (req, res, next) {
         data.request.findById(req.params.id).then(function (request) {
             if (request) {
+                req.request = request;
                 next()
             } else {
-                 res.render("shared/404",{title:"Not-Found"})
+                res.render("shared/404", {title: "Not-Found"})
             }
         }, next);
     };
@@ -65,6 +74,7 @@ var Request = function (config, logger, data) {
         }
         inspect.method = constant.methods[req.method];
         data.inspect.create(inspect).then(function () {
+            incRequestCount(req.request);
             res.send("ok");
         }, function (err) {
             next(err);
@@ -87,7 +97,8 @@ var Request = function (config, logger, data) {
             var _requests = _.map(requests, function (request) {
                 return {
                     id   : request.id,
-                    color: request.color
+                    color: request.color,
+                    count: request.count
                 };
             });
             res.send({code: 200, data: _requests})
