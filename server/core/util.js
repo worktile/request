@@ -1,5 +1,6 @@
 var uuid = require('node-uuid'),
-    moment = require('moment');
+    moment = require('moment'),
+    shortid = require('shortid');
 
 module.exports = exports = {
     guid: function () {
@@ -7,6 +8,10 @@ module.exports = exports = {
         var regex = new RegExp('-', 'g');
         str = str.replace(regex, '');
         return str;
+    },
+
+    shortId: function () {
+        return shortid.generate();
     },
 
     getNow: function () {

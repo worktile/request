@@ -1,1 +1,1 @@
-<div>    这是一个很好用的 Request 工具    <a href="/create" class="btn btn-success">创建请求</a></div>
+<div ng-controller="homeCtrl">    这是一个很好用的 Request 工具                 <div ng-repeat="request in requests">                    <a href="/{{request.id}}/inspect" ng-style="{'color':request.color}"> {{request.id}}</a>                 </div>    <a href="/create" class="btn btn-success">创建请求</a></div>

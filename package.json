@@ -32,6 +32,7 @@
     "node-uuid": "^1.4.3",
     "request": "^2.61.0",
     "sequelize": "^3.6.0",
+    "shortid": "^2.2.2",
     "sqlite3": "^3.0.10",
     "winston": "^1.0.1"
   }

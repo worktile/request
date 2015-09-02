@@ -1,5 +1,6 @@
 var Base = require("./base"),
     util = require("util"),
+    constant = require("../core/constant"),
     lcUtil = require("../core/util"),
     _ = require("lodash"),
     moment = require("moment");
@@ -13,11 +14,13 @@ var Request = function (config, logger, data) {
      * @param next
      */
     Request.prototype.create = function (req, res, next) {
-        var reqId = lcUtil.guid();
+        var reqId = lcUtil.shortId();
+        var index = Math.floor(Math.random() * constant.color.length);
         data.request.create({
             id       : reqId,
             createdAt: lcUtil.getNow(),
-            sid      : req.sid
+            sid      : req.sid,
+            color    : constant.color[index]
         }).then(function () {
             res.redirect("/" + reqId + "/inspect");
         });
@@ -45,9 +48,32 @@ var Request = function (config, logger, data) {
         inspect.method = METHODS[req.method];
         data.inspect.create(inspect).then(function () {
             res.send("ok");
-        },function(err){
+        }, function (err) {
 
         });
+    };
+
+    /**
+     * GET /api/requests
+     * @param req
+     * @param res
+     * @param next
+     */
+    Request.prototype.getRequestList = function (req, res, next) {
+        data.request.findAll({
+            where: {
+                sid: req.sid
+            },
+            order: [['createdAt', 'DESC']]
+        }).then(function (requests) {
+            var _requests = _.map(requests, function (request) {
+                return {
+                    id   : request.id,
+                    color: request.color
+                };
+            });
+            res.send({code: 200, data: _requests})
+        })
     };
 
     /**
@@ -62,7 +88,7 @@ var Request = function (config, logger, data) {
             where: {
                 requestId: reqId
             },
-            order:[ ['createdAt', 'DESC']]
+            order: [['createdAt', 'DESC']]
         }).then(function (inspects) {
             var _inspects = _.map(inspects, function (inspecte) {
                 return {
@@ -92,6 +118,12 @@ var Request = function (config, logger, data) {
 
     };
 
+    /**
+     * GET /
+     * @param req
+     * @param res
+     * @param next
+     */
     Request.prototype.index = function (req, res, next) {
         res.render("index", {title: "首页"})
     };

@@ -5,6 +5,9 @@ module.exports = exports = function (sequelize) {
         id       : {
             type: Sequelize.STRING, primaryKey: true
         },
+        color:{
+            type: Sequelize.STRING
+        },
         createdAt: {
             type: Sequelize.INTEGER
         },

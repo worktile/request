@@ -10,6 +10,7 @@ exports = module.exports = function (app, config, logger) {
     app.use(handler.init);
 
     app.get("/api/requests/:id/inspects", ctrl.request.getInspectList);
+    app.get("/api/requests", ctrl.request.getRequestList);
     app.get("", ctrl.request.index);
     app.get("/:id/inspect", ctrl.request.list);
     app.get("/create", ctrl.request.create);
@@ -25,4 +26,5 @@ exports = module.exports = function (app, config, logger) {
 
     // Error handler
     app.use(handler.errorHandler);
+
 };

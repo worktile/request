@@ -5,13 +5,7 @@ module.exports = exports = function (sequelize, Request) {
             type: Sequelize.STRING, primaryKey: true
         },
         requestId: {
-            type      : Sequelize.STRING,
-            //references: {
-            //    // This is a reference to another model
-            //    model: Request,
-            //    // This is the column name of the referenced model
-            //    key  : 'id'
-            //}
+            type      : Sequelize.STRING
         },
         path     : {
             type: Sequelize.STRING

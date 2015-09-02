@@ -6,11 +6,15 @@ module.exports = exports = function (config, logger) {
 
     function init(req, res, next) {
         if (!req.cookies["sid"]) {
-            res.cookie("sid", lcUtil.guid(), {
+            var sid = lcUtil.guid();
+            res.cookie("sid", sid, {
                 expires : 0,
                 httpOnly: false,
                 path    : '/'
             });
+            req.sid = sid;
+        }else{
+            req.sid = req.cookies["sid"];
         }
         next();
     };
