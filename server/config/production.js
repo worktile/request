@@ -10,7 +10,14 @@ var config = {
             idle: 10000
         },
         // SQLite only
-        storage: 'path/to/database.sqlite'
+        storage: 'data/database.sqlite'
+    },
+    logger              : {
+        level        : "info",
+        dirName      : "logs", // e.g. /mnt/wtlog/nodejs/web
+        filename     : "",
+        errorFileName: "",
+        maxsize      : 1024 * 1024 * 10,
     }
 };
 

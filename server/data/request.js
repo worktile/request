@@ -5,7 +5,7 @@ module.exports = exports = function (sequelize) {
         id       : {
             type: Sequelize.STRING, primaryKey: true
         },
-        color:{
+        color    : {
             type: Sequelize.STRING
         },
         createdAt: {
@@ -13,6 +13,10 @@ module.exports = exports = function (sequelize) {
         },
         sid      : {
             type: Sequelize.STRING
+        },
+        count    : {
+            type        : Sequelize.INTEGER,
+            defaultValue: 0
         }
     }, {
         freezeTableName: true // Model tableName will be the same as the model name

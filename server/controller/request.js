@@ -7,6 +7,31 @@ var Base = require("./base"),
 var Request = function (config, logger, data) {
     Base.call(this, config, logger, data);
 
+    var incRequestCount = function (request) {
+        if (request) {
+            request.updateAttributes({
+                count: request.count + 1
+            });
+        }
+    };
+
+    /**
+     * Check request
+     * @param req
+     * @param res
+     * @param next
+     */
+    Request.prototype.checkRequest = function (req, res, next) {
+        data.request.findById(req.params.id).then(function (request) {
+            if (request) {
+                req.request = request;
+                next()
+            } else {
+                res.render("shared/404", {title: "Not-Found"})
+            }
+        }, next);
+    };
+
     /**
      * create request
      * @param req
@@ -49,9 +74,10 @@ var Request = function (config, logger, data) {
         }
         inspect.method = constant.methods[req.method];
         data.inspect.create(inspect).then(function () {
+            incRequestCount(req.request);
             res.send("ok");
         }, function (err) {
-
+            next(err);
         });
     };
 
@@ -71,7 +97,8 @@ var Request = function (config, logger, data) {
             var _requests = _.map(requests, function (request) {
                 return {
                     id   : request.id,
-                    color: request.color
+                    color: request.color,
+                    count: request.count
                 };
             });
             res.send({code: 200, data: _requests})
@@ -105,6 +132,8 @@ var Request = function (config, logger, data) {
                 };
             });
             res.send({code: 200, data: _inspects})
+        }, function (err) {
+            next(err);
         })
     };
 
@@ -121,7 +150,7 @@ var Request = function (config, logger, data) {
     };
 
     /**
-     * GET /
+     * GET / Home 首页
      * @param req
      * @param res
      * @param next
@@ -130,6 +159,12 @@ var Request = function (config, logger, data) {
         res.render("index", {title: "首页"})
     };
 
+    /**
+     * Not Found Page
+     * @param req
+     * @param res
+     * @param next
+     */
     Request.prototype.notFound = function (req, res, next) {
         res.render("shared/404.html", {title: "首页"})
     }

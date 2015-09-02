@@ -29,10 +29,8 @@ module.exports = exports = function (config) {
         storage: config.database.storage
     });
     var Request = new request(sequelize), Inspect = new inspect(sequelize, Request);
-    Request.sync().then(function () {
-    });
-    Inspect.sync().then(function () {
-    });
+    Request.sync({force:true});
+    Inspect.sync({force:true});
     return {
         request: Request,
         inspect: Inspect
