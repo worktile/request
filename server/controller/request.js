@@ -26,6 +26,12 @@ var Request = function (config, logger, data) {
         });
     };
 
+    /**
+     * 接受响应
+     * @param req
+     * @param res
+     * @param next
+     */
     Request.prototype.response = function (req, res, next) {
         var reqId = req.params.id;
         var inspect = {
@@ -96,7 +102,7 @@ var Request = function (config, logger, data) {
                     ip       : inspecte.ip,
                     query    : inspecte.query ? JSON.parse(inspecte.query) : null,
                     params   : inspecte.params ? JSON.parse(inspecte.params) : null,
-                    headers  : inspecte.headers ? JSON.parse(inspecte.headers) : null,
+                    headers  : inspecte.headers ? lcUtil.objectToArray(JSON.parse(inspecte.headers)) : null,
                     body     : inspecte.body ? JSON.parse(inspecte.body) : null,
                     createdAt: moment(inspecte.createdAt).format("YYYY年MM月DD日 HH:mm:ss"),
                     path     : inspecte.path
