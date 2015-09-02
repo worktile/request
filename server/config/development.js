@@ -1,5 +1,5 @@
 var config = {
-    enableCompression: true,
+    enableCompression: false,
     database         : {
         username: '',
         password: '',
