@@ -1,6 +1,7 @@
 var uuid = require('node-uuid'),
     moment = require('moment'),
-    shortid = require('shortid');
+    shortid = require('shortid'),
+    _ = require('lodash');
 
 module.exports = exports = {
     guid: function () {
@@ -17,5 +18,11 @@ module.exports = exports = {
     getNow: function () {
         var now = moment();
         return now.valueOf();
+    },
+
+    objectToArray: function (obj) {
+        return _.map(obj, function (value, key) {
+            return {key: key, value: value}
+        });
     }
 };
