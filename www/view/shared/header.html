@@ -1,6 +1,18 @@
-<header class="navbar lc-header">
+<header class="navbar lc-header" ng-controller="homeCtrl">
     <div class="container">
         <a href="/" class="navbar-brand">Request</a>
-        <a href="http://lesschat.com" class="pull-right lc-project">纷云社区项目</a>
+
+        <div class="dropdown lc-project pull-right">
+            <a href="#" class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                历史记录
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li ng-repeat="request in requests">
+                    <a href="/{{request.id}}/inspect"><i ng-style="{'background':request.color}"></i>{{request.id}} <span>({{request.count}})<span></span></a>
+                </li>
+            </ul>
+        </div>
+
     </div>
 </header>
