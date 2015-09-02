@@ -3,6 +3,7 @@
   "dependencies": {
     "bootstrap": "~3.3.5",
     "angular": "~1.4.5",
-    "fontawesome": "~4.4.0"
+    "fontawesome": "~4.4.0",
+    "google-code-prettify": "~1.0.4"
   }
 }
