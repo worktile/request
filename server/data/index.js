@@ -28,13 +28,13 @@ module.exports = exports = function (config) {
         // SQLite only
         storage: config.database.storage
     });
-    var Request = new request(sequelize), Inspect = new inspect(sequelize);
+    var Request = new request(sequelize), Inspect = new inspect(sequelize, Request);
     Request.sync().then(function () {
     });
     Inspect.sync().then(function () {
     });
     return {
-        request : Request,
+        request: Request,
         inspect: Inspect
     }
 
