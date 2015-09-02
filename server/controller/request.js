@@ -59,7 +59,8 @@ var Request = function (config, logger, data) {
         data.inspect.findAll({
             where: {
                 requestId: reqId
-            }
+            },
+            order:[ ['createdAt', 'DESC']]
         }).then(function (inspects) {
             var _inspects = _.map(inspects, function (inspecte) {
                 return {
