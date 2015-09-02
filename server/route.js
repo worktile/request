@@ -14,10 +14,7 @@ exports = module.exports = function (app, config, logger) {
     app.get("", ctrl.request.index);
     app.get("/:id/inspect", ctrl.request.list);
     app.get("/create", ctrl.request.create);
-    app.get("/:id", ctrl.request.response);
-    app.post("/:id", ctrl.request.response);
-    app.put("/:id", ctrl.request.response);
-    app.delete("/:id", ctrl.request.response);
+    app.all("/:id", ctrl.request.response);
 
     app.get('*', ctrl.request.notFound);
     app.post('*', ctrl.request.notFound);

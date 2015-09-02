@@ -1,9 +1,13 @@
 var constant = {
     methods: {
-        GET   : 1,
-        POST  : 2,
-        PUT   : 3,
-        DELETE: 4
+        GET    : 1,
+        POST   : 2,
+        PUT    : 3,
+        DELETE : 4,
+        OPTIONS: 5,
+        HEAD   : 6,
+        TRACE  : 7,
+        CONNECT: 8
     },
     color  : [
         "#da4f4a",

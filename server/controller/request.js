@@ -41,17 +41,13 @@ var Request = function (config, logger, data) {
             ip       : req.ip,
             path     : req.path,
             headers  : req.headers ? JSON.stringify(req.headers) : null,
-            params   : req.params ? JSON.stringify(req.params) : null,
             query    : req.query ? JSON.stringify(req.query) : null,
             body     : req.body ? JSON.stringify(req.body) : null
         };
-        var METHODS = {
-            GET   : 1,
-            POST  : 2,
-            PUT   : 3,
-            DELETE: 4
-        };
-        inspect.method = METHODS[req.method];
+        if (req.is("application/x-www-form-urlencoded")) {
+            inspect.params = inspect.query;
+        }
+        inspect.method = constant.methods[req.method];
         data.inspect.create(inspect).then(function () {
             res.send("ok");
         }, function (err) {
@@ -101,7 +97,7 @@ var Request = function (config, logger, data) {
                     method   : inspecte.method,
                     ip       : inspecte.ip,
                     query    : inspecte.query ? JSON.parse(inspecte.query) : null,
-                    params   : inspecte.params ? JSON.parse(inspecte.params) : null,
+                    params   : inspecte.params ? lcUtil.objectToArray(JSON.parse(inspecte.params)) : null,
                     headers  : inspecte.headers ? lcUtil.objectToArray(JSON.parse(inspecte.headers)) : null,
                     body     : inspecte.body ? JSON.parse(inspecte.body) : null,
                     createdAt: moment(inspecte.createdAt).format("YYYY年MM月DD日 HH:mm:ss"),
