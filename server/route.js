@@ -9,6 +9,7 @@ exports = module.exports = function (app, config, logger) {
     app.use(handler.domainMiddleware);
     app.use(handler.init);
 
+    app.get("/api/requests/:id/inspects", ctrl.request.getInspectList);
     app.get("", ctrl.request.index);
     app.get("/:id/inspect", ctrl.request.list);
     app.get("/create", ctrl.request.create);

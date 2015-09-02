@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="lcReqApp">
 <head>
     <title><%= (locals.title || "") + " - " + locals.config.title %></title>
     <link rel="stylesheet" type="text/css"
-          href="<%=locals.config.enableCompression ? '/dist/home.min.css':'/home/css/home.css'%>?v=<%=locals.config.version%>">
+          href="<%=locals.config.enableCompression ? '/dist/main.min.css':'/css/main.css'%>?v=<%=locals.config.version%>">
     <link rel="Shortcut Icon" href="/favicon.ico">
 </head>
 <body>
@@ -12,5 +12,9 @@
 
 <%-include shared/footer.html%>
 
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="/bower_components/angular/angular.js"></script>
+<script src="/js/app.js"></script>
 </body>
 </html>

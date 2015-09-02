@@ -1,6 +1,6 @@
 var Sequelize = require("sequelize"),
     request = require("./request"),
-    response = require("./response");
+    inspect = require("./inspect");
 
 //User.sync({force: true}).then(function () {
 //    // Table created
@@ -28,14 +28,14 @@ module.exports = exports = function (config) {
         // SQLite only
         storage: config.database.storage
     });
-    var Request = request(sequelize), Response = response(sequelize);
+    var Request = new request(sequelize), Inspect = new inspect(sequelize);
     Request.sync().then(function () {
     });
-    Response.sync().then(function () {
+    Inspect.sync().then(function () {
     });
     return {
         request : Request,
-        response: Response
+        inspect: Inspect
     }
 
 };

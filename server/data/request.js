@@ -3,7 +3,7 @@ var Sequelize = require("sequelize");
 module.exports = exports = function (sequelize) {
     return sequelize.define('request', {
         id       : {
-            type: Sequelize.STRING
+            type: Sequelize.STRING, primaryKey: true
         },
         createdAt: {
             type: Sequelize.INTEGER
