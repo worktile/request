@@ -70,7 +70,7 @@ var Request = function (config, logger, data) {
             body     : req.body ? JSON.stringify(req.body) : null
         };
         if (req.is("application/x-www-form-urlencoded")) {
-            inspect.params = inspect.query;
+            inspect.params = inspect.body;
         }
         inspect.method = constant.methods[req.method];
         data.inspect.create(inspect).then(function () {
@@ -123,7 +123,7 @@ var Request = function (config, logger, data) {
                 return {
                     method   : inspecte.method,
                     ip       : inspecte.ip,
-                    query    : inspecte.query ? JSON.parse(inspecte.query) : null,
+                    query    : inspecte.query ? lcUtil.objectToArray(JSON.parse(inspecte.query)) : null,
                     params   : inspecte.params ? lcUtil.objectToArray(JSON.parse(inspecte.params)) : null,
                     headers  : inspecte.headers ? lcUtil.objectToArray(JSON.parse(inspecte.headers)) : null,
                     body     : inspecte.body ? JSON.parse(inspecte.body) : null,
