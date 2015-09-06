@@ -8,8 +8,8 @@ exports = module.exports = function (app, config, logger) {
     ctrl = ctrl(config, logger);
     app.use(handler.domainMiddleware);
 
-    app.get("/api/requests/:id/inspects", ctrl.request.checkRequest, ctrl.request.getInspectList);
-    app.get("/api/requests", ctrl.request.getRequestList);
+    app.get("/api/requests/:id/inspects", handler.init, ctrl.request.checkRequest, ctrl.request.getInspectList);
+    app.get("/api/requests", handler.init, ctrl.request.getRequestList);
     app.get("", handler.init, ctrl.request.index);
     app.get("/:id/inspect", handler.init, ctrl.request.checkRequest, ctrl.request.list);
     app.get("/create", handler.init, ctrl.request.create);
