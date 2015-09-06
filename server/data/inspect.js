@@ -13,7 +13,7 @@ module.exports = exports = function (sequelize, Request) {
             //    key  : 'id'
             //}
         },
-        path     : {
+        originalUrl     : {
             type: Sequelize.STRING
         },
         createdAt: {
@@ -24,6 +24,12 @@ module.exports = exports = function (sequelize, Request) {
         },
         headers  : {
             type: Sequelize.STRING
+        },
+        contentType  : {
+            type: Sequelize.STRING
+        },
+        length  : {
+            type: Sequelize.INTEGER
         },
         params   : {
             type: Sequelize.STRING

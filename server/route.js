@@ -16,10 +16,7 @@ exports = module.exports = function (app, config, logger) {
     app.get("/create", ctrl.request.create);
     app.all("/:id", ctrl.request.checkRequest, ctrl.request.response);
 
-    app.get('*', ctrl.request.notFound);
-    app.post('*', ctrl.request.notFound);
-    app.put('*', ctrl.request.notFound);
-    app.delete('*', ctrl.request.notFound);
+    app.all('*', ctrl.request.notFound);
 
     // Error handler
     app.use(handler.errorHandler);
