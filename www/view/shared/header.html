@@ -11,7 +11,7 @@
                 <li ng-repeat="request in requests">
                     <a href="/{{request.id}}/inspect"><i ng-style="{'background':request.color}"></i>{{request.id}} <span>({{request.count}})</span></a>
                 </li>
-                <li ng-if="requests.length == 0">
+                <li ng-if="requests.length == 0" class="empty">
                     <span>暂时还没有历史记录</span>
                 </li>
             </ul>
