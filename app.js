@@ -14,6 +14,8 @@ var config = require("./server/config"),
 app.use(compression());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json({limit: "10mb"}));
+app.use(bodyParser.raw());
+app.use(bodyParser.text());
 app.use(cookieParser());
 
 // view engine setup
