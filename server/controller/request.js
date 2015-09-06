@@ -58,6 +58,7 @@ var Request = function (config, logger, data) {
      * @param next
      */
     Request.prototype.response = function (req, res, next) {
+        console.log(req.body);
         var reqId = req.params.id;
         var inspect = {
             id         : lcUtil.guid(),
