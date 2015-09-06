@@ -16,9 +16,9 @@ var config = {
     },
     logger  : {
         level        : "info",
-        dirName      : "logs", // e.g. /mnt/wtlog/nodejs/web
-        filename     : "",
-        errorFileName: "",
+        dirName      : "/data/logs/nodejs", // e.g. /mnt/wtlog/nodejs/web
+        filename     : "lc-request-log.log",
+        errorFileName: "lc-request-error.log",
         maxsize      : 1024 * 1024 * 10,
     }
 };
