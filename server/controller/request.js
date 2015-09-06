@@ -10,9 +10,7 @@ var Request = function (config, logger, data) {
 
     var incRequestCount = function (request) {
         if (request) {
-            request.updateAttributes({
-                count: request.count + 1
-            });
+            request.increment('count');
         }
     };
 
