@@ -60,15 +60,17 @@ var Request = function (config, logger, data) {
     Request.prototype.response = function (req, res, next) {
         var reqId = req.params.id;
         var inspect = {
-            id       : lcUtil.guid(),
-            requestId: reqId,
-            createdAt: lcUtil.getNow(),
-            ip       : req.ip,
-            path     : req.path,
-            headers  : req.headers ? JSON.stringify(req.headers) : null,
-            query    : req.query ? JSON.stringify(req.query) : null,
-            body     : req.body ? JSON.stringify(req.body) : null
+            id         : lcUtil.guid(),
+            requestId  : reqId,
+            createdAt  : lcUtil.getNow(),
+            ip         : req.ip,
+            originalUrl: req.originalUrl,
+            headers    : req.headers ? JSON.stringify(req.headers) : null,
+            query      : req.query ? JSON.stringify(req.query) : null,
+            body       : req.body ? JSON.stringify(req.body) : null
         };
+        inspect.contentType = req.get('Content-Type') || "";
+        inspect.length = parseInt(req.get('Content-Length') || 0);
         if (req.is("application/x-www-form-urlencoded")) {
             inspect.params = inspect.body;
         }
@@ -121,14 +123,16 @@ var Request = function (config, logger, data) {
         }).then(function (inspects) {
             var _inspects = _.map(inspects, function (inspecte) {
                 return {
-                    method   : inspecte.method,
-                    ip       : inspecte.ip,
-                    query    : inspecte.query ? lcUtil.objectToArray(JSON.parse(inspecte.query)) : null,
-                    params   : inspecte.params ? lcUtil.objectToArray(JSON.parse(inspecte.params)) : null,
-                    headers  : inspecte.headers ? lcUtil.objectToArray(JSON.parse(inspecte.headers)) : null,
-                    body     : inspecte.body ? JSON.parse(inspecte.body) : null,
-                    createdAt: moment(inspecte.createdAt).format("YYYY年MM月DD日 HH:mm:ss"),
-                    path     : inspecte.path
+                    method     : inspecte.method,
+                    ip         : inspecte.ip,
+                    query      : inspecte.query ? lcUtil.objectToArray(JSON.parse(inspecte.query)) : null,
+                    params     : inspecte.params ? lcUtil.objectToArray(JSON.parse(inspecte.params)) : null,
+                    headers    : inspecte.headers ? lcUtil.objectToArray(JSON.parse(inspecte.headers)) : null,
+                    body       : inspecte.body ? JSON.parse(inspecte.body) : null,
+                    createdAt  : moment(inspecte.createdAt).format("YYYY年MM月DD日 HH:mm:ss"),
+                    originalUrl: inspecte.originalUrl,
+                    contentType: inspecte.contentType,
+                    length     : inspecte.length
                 };
             });
             res.send({code: 200, data: _inspects})

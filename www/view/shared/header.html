@@ -1,4 +1,4 @@
-<header class="navbar lc-header" ng-controller="homeCtrl">
+<header class="navbar lc-header" ng-controller="headerCtrl">
     <div class="container">
         <a href="/" class="navbar-brand">Request</a>
 
@@ -9,7 +9,10 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                 <li ng-repeat="request in requests">
-                    <a href="/{{request.id}}/inspect"><i ng-style="{'background':request.color}"></i>{{request.id}} <span>({{request.count}})<span></span></a>
+                    <a href="/{{request.id}}/inspect"><i ng-style="{'background':request.color}"></i>{{request.id}} <span>({{request.count}})</span></a>
+                </li>
+                <li ng-if="requests.length == 0" class="empty">
+                    <span>暂时还没有历史记录</span>
                 </li>
             </ul>
         </div>
