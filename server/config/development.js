@@ -19,7 +19,7 @@ var config = {
         dirName      : "logs", // e.g. /mnt/wtlog/nodejs/web
         filename     : "",
         errorFileName: "",
-        maxsize      : 1024 * 1024 * 10,
+        maxsize      : 1024 * 1024 * 10
     }
 };
 

@@ -3,17 +3,13 @@ var ctrl = require("./controller"),
     util = require("util"),
     handler = require("./handler"),
     express = require("express"),
-    cookieParser = require('cookie-parser'),
-    bodyParser = require('body-parser'),
-    compression = require("compression");
+    bodyParser = require('body-parser');
 
 exports = module.exports = function (app, config, logger) {
     handler = new handler(config, logger);
     ctrl = ctrl(config, logger);
 
     app.use(handler.domainMiddleware);
-    app.use(compression());
-    app.use(cookieParser());
 
     app.use("/api/*", bodyParser.json({limit: "10mb"}), handler.initCookie(true));
     app.get("/api/requests/:id/inspects", ctrl.request.checkRequest, ctrl.request.getInspectList);
