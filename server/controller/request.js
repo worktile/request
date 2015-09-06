@@ -58,7 +58,6 @@ var Request = function (config, logger, data) {
      * @param next
      */
     Request.prototype.response = function (req, res, next) {
-        console.log(req.body);
         var reqId = req.params.id;
         var inspect = {
             id         : lcUtil.guid(),
@@ -136,7 +135,7 @@ var Request = function (config, logger, data) {
                     length     : inspecte.length
                 };
             });
-            res.send({code: 200, data: _inspects})
+            res.send({code: 200, data: {inspects: _inspects, request: {id: req.request.id, color: req.request.color}}})
         }, function (err) {
             next(err);
         })
