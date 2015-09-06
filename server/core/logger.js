@@ -4,8 +4,9 @@ var logger = new (winston.Logger)({}), errorLogger = new (winston.Logger)({});
 var logInfo = false, logError = false;
 
 var initSettings = function(config){
+    var live = (process.argv.length >= 3 && process.argv[2].toLowerCase() == "live");
 
-    if (config.filename) {
+    if (config.filename && !live) {
         logger.add(winston.transports.File, {
             level   : config.level,
             filename: config.filename,
@@ -15,7 +16,7 @@ var initSettings = function(config){
         logInfo = true;
     }
 
-    if (logger.errorFileName) {
+    if (logger.errorFileName && !live) {
         errorLogger.add(winston.transports.File, {
             level   : config.level,
             filename: config.errorFileName,

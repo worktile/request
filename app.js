@@ -4,19 +4,14 @@ var config = require("./server/config"),
     logger = require('./server/core/logger')(config.logger),
     ejs = require('ejs'),
     cookieParser = require('cookie-parser'),
-    bodyParser = require('body-parser'),
     expressLayouts = require("express-ejs-layouts"),
     compression = require("compression"),
     app = express(),
     route = require("./server/route"),
     packageJson = require("./package.json");
 
-//app.use(compression());
-//app.use(bodyParser.urlencoded({extended: false}));
-//app.use(bodyParser.json({limit: "10mb"}));
-//app.use(bodyParser.raw());
-//app.use(bodyParser.text());
-//app.use(cookieParser());
+app.use(compression());
+app.use(cookieParser());
 
 // view engine setup
 app.use(express.static(path.join(__dirname, '/www/static')));
