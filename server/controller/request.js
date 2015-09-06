@@ -126,6 +126,7 @@ var Request = function (config, logger, data) {
         }).then(function (inspects) {
             var _inspects = _.map(inspects, function (inspecte) {
                 return {
+                    id         : inspecte.id,
                     method     : inspecte.method,
                     ip         : inspecte.ip,
                     query      : inspecte.query ? lcUtil.objectToArray(JSON.parse(inspecte.query)) : null,
