@@ -160,7 +160,7 @@ var Request = function (config, logger, data) {
      * @param next
      */
     Request.prototype.index = function (req, res, next) {
-        res.render("index", {title: "首页"})
+        res.render("index", {title: "Request"})
     };
 
     /**
