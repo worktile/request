@@ -153,7 +153,7 @@ var Request = function (config, logger, data) {
      */
     Request.prototype.list = function (req, res, next) {
         var reqId = req.params.id;
-        res.render("list.html", {title: reqId, reqId: reqId});
+        res.render("list.html", {title: "Request-" + reqId, reqId: reqId});
 
     };
 
