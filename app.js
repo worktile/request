@@ -11,12 +11,12 @@ var config = require("./server/config"),
     route = require("./server/route"),
     packageJson = require("./package.json");
 
-app.use(compression());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json({limit: "10mb"}));
-app.use(bodyParser.raw());
-app.use(bodyParser.text());
-app.use(cookieParser());
+//app.use(compression());
+//app.use(bodyParser.urlencoded({extended: false}));
+//app.use(bodyParser.json({limit: "10mb"}));
+//app.use(bodyParser.raw());
+//app.use(bodyParser.text());
+//app.use(cookieParser());
 
 // view engine setup
 app.use(express.static(path.join(__dirname, '/www/static')));

@@ -3,7 +3,8 @@ var Base = require("./base"),
     constant = require("../core/constant"),
     lcUtil = require("../core/util"),
     _ = require("lodash"),
-    moment = require("moment");
+    moment = require("moment"),
+    queryString = require('query-string');
 var Request = function (config, logger, data) {
     Base.call(this, config, logger, data);
 
@@ -67,13 +68,15 @@ var Request = function (config, logger, data) {
             originalUrl: req.originalUrl,
             headers    : req.headers ? JSON.stringify(req.headers) : null,
             query      : req.query ? JSON.stringify(req.query) : null,
-            body       : req.body ? JSON.stringify(req.body) : null
+            body       : req.rawBody
         };
         inspect.contentType = req.get('Content-Type') || "";
         inspect.length = parseInt(req.get('Content-Length') || 0);
-        if (req.is("application/x-www-form-urlencoded")) {
-            inspect.params = inspect.body;
+        if (req.is("application/x-www-form-urlencoded") && inspect.body) {
+            var parsed = queryString.parse(inspect.body);
+            inspect.params =JSON.stringify(parsed);
         }
+        console.log(req.rawBody);
         inspect.method = constant.methods[req.method];
         data.inspect.create(inspect).then(function () {
             incRequestCount(req.request);
@@ -128,7 +131,7 @@ var Request = function (config, logger, data) {
                     query      : inspecte.query ? lcUtil.objectToArray(JSON.parse(inspecte.query)) : null,
                     params     : inspecte.params ? lcUtil.objectToArray(JSON.parse(inspecte.params)) : null,
                     headers    : inspecte.headers ? lcUtil.objectToArray(JSON.parse(inspecte.headers)) : null,
-                    body       : inspecte.body ? JSON.parse(inspecte.body) : null,
+                    body       : inspecte.body,
                     createdAt  : moment(inspecte.createdAt).format("YYYY年MM月DD日 HH:mm:ss"),
                     originalUrl: inspecte.originalUrl,
                     contentType: inspecte.contentType,

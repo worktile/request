@@ -4,19 +4,21 @@ var domain = require("domain"),
 
 module.exports = exports = function (config, logger) {
 
-    function init(req, res, next) {
-        if (!req.cookies["sid"]) {
-            var sid = lcUtil.guid();
-            res.cookie("sid", sid, {
-                expires : 0,
-                httpOnly: false,
-                path    : '/'
-            });
-            req.sid = sid;
-        }else{
-            req.sid = req.cookies["sid"];
+    function initCookie(justCheck) {
+        return function (req, res, next) {
+            if (!req.cookies["sid"] && !justCheck) {
+                var sid = lcUtil.guid();
+                res.cookie("sid", sid, {
+                    expires : 0,
+                    httpOnly: false,
+                    path    : '/'
+                });
+                req.sid = sid;
+            } else {
+                req.sid = req.cookies["sid"] || "";
+            }
+            next();
         }
-        next();
     };
 
     function domainMiddleware(req, res, next) {
@@ -51,9 +53,22 @@ module.exports = exports = function (config, logger) {
         }
     };
 
+    function anyBodyParser(req, res, next) {
+        var data = '';
+        req.setEncoding('utf8');
+        req.on('data', function (chunk) {
+            data += chunk;
+        });
+        req.on('end', function () {
+            req.rawBody = data;
+            next();
+        });
+    }
+
     return {
+        anyBodyParser   : anyBodyParser,
         domainMiddleware: domainMiddleware,
         errorHandler    : errorHandler,
-        init            : init
+        initCookie      : initCookie
     };
 };
