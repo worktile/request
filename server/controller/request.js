@@ -131,7 +131,7 @@ var Request = function (config, logger, data) {
                     params     : inspecte.params ? lcUtil.objectToArray(JSON.parse(inspecte.params)) : null,
                     headers    : inspecte.headers ? lcUtil.objectToArray(JSON.parse(inspecte.headers)) : null,
                     body       : inspecte.body,
-                    createdAt  : moment(inspecte.createdAt).format("YYYY年MM月DD日 HH:mm:ss"),
+                    createdAt  : inspecte.createdAt,
                     originalUrl: inspecte.originalUrl,
                     contentType: inspecte.contentType,
                     length     : inspecte.length
