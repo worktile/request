@@ -1,13 +1,19 @@
 var constant = {
     methods: {
-        GET    : 1,
-        POST   : 2,
-        PUT    : 3,
-        DELETE : 4,
-        OPTIONS: 5,
-        HEAD   : 6,
-        TRACE  : 7,
-        CONNECT: 8
+        GET     : 1,
+        POST    : 2,
+        PUT     : 3,
+        DELETE  : 4,
+        OPTIONS : 5,
+        HEAD    : 6,
+        TRACE   : 7,
+        CONNECT : 8,
+        PATH    : 9,
+        PATCH   : 10,
+        MOVE    : 11,
+        COPY    : 12,
+        CHECKOUT: 13,
+        LOCK    : 14
     },
     color  : [
         '#6b0516',

@@ -74,8 +74,7 @@ var Request = function (config, logger, data) {
             var parsed = queryString.parse(inspect.body);
             inspect.params =JSON.stringify(parsed);
         }
-        console.log(req.rawBody);
-        inspect.method = constant.methods[req.method];
+        inspect.method = constant.methods[req.method.toUpperCase()];
         data.inspect.create(inspect).then(function () {
             incRequestCount(req.request);
             res.send("ok");
@@ -131,7 +130,7 @@ var Request = function (config, logger, data) {
                     params     : inspecte.params ? lcUtil.objectToArray(JSON.parse(inspecte.params)) : null,
                     headers    : inspecte.headers ? lcUtil.objectToArray(JSON.parse(inspecte.headers)) : null,
                     body       : inspecte.body,
-                    createdAt  : moment(inspecte.createdAt).format("YYYY年MM月DD日 HH:mm:ss"),
+                    createdAt  : inspecte.createdAt,
                     originalUrl: inspecte.originalUrl,
                     contentType: inspecte.contentType,
                     length     : inspecte.length
