@@ -74,8 +74,7 @@ var Request = function (config, logger, data) {
             var parsed = queryString.parse(inspect.body);
             inspect.params =JSON.stringify(parsed);
         }
-        console.log(req.rawBody);
-        inspect.method = constant.methods[req.method];
+        inspect.method = constant.methods[req.method.toUpperCase()];
         data.inspect.create(inspect).then(function () {
             incRequestCount(req.request);
             res.send("ok");
