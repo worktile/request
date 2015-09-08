@@ -4,6 +4,7 @@ var uuid = require('node-uuid'),
     _ = require('lodash');
 
 module.exports = exports = {
+
     guid: function () {
         var str = uuid.v4();
         var regex = new RegExp('-', 'g');

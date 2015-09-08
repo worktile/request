@@ -1,6 +1,6 @@
 {
   "name": "lesschat-request",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "log request and response",
   "main": "app.js",
   "scripts": {
