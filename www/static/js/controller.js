@@ -7,14 +7,16 @@ angular.module("lcReqApp")
             $scope.inspects = result.data.inspects;
             $scope.request = result.data.request;
             vm.loadingDone = true;
+            if(!$scope.inspects || $scope.inspects.length == 0) {
+                $timeout(function () {
+                    prettyPrint();
+                }, 100);
+            }
         });
-        $timeout(function () {
-            prettyPrint();
-        }, 100);
+
     }])
     .controller("headerCtrl", ["$scope", "$http", "$location", function ($scope, $http, $location) {
         $http.get("/api/requests/").success(function (result) {
             $scope.requests = result.data;
         });
-
     }]);

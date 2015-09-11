@@ -26,6 +26,7 @@ angular.module("lcReqApp")
         return {
             restrict: 'EA',
             link    : function postLink(scope, element, attrs) {
+                debugger;
                 if (!attrs.prettyprint)return;
                 var html = scope.$eval(attrs.prettyprint);
                 html = replaceText(html);
