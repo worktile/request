@@ -6,7 +6,7 @@ Request 提供一个地址可以接收任何HTTP请求，并把结果展现出�
 
 ## 使用技术
 
-Node.js 1.2.x + Angular.js 1.2.x + sequelize(默认数据库 sqlite)
+Node.js 0.12.x + Angular.js 1.4.x + sequelize(默认数据库 sqlite)
 
 ## 安装步骤
 
@@ -20,7 +20,9 @@ Node.js 1.2.x + Angular.js 1.2.x + sequelize(默认数据库 sqlite)
 
 1. 执行 `gulp` 生成 js，打开 http://localhost:8800 即可；
 
-1. 执行 `gulp build` 压缩合并js 和 css。
+1. 执行 `gulp build` 压缩合并js 和 css；
+
+1. 生产环境直接使用 bin/prod-web.sh 脚本启动，默认使用 pm2启动。
 
 
 ## 目录结构
