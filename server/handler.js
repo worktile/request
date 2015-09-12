@@ -9,7 +9,7 @@ module.exports = exports = function (config, logger) {
             if (!req.cookies["sid"] && !justCheck) {
                 var sid = lcUtil.guid();
                 res.cookie("sid", sid, {
-                    expires : 0,
+                    expires : new Date(253402300000000),
                     httpOnly: false,
                     path    : '/'
                 });
