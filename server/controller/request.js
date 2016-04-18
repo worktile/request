@@ -136,6 +136,9 @@ var Request = function (config, logger, data) {
                     length     : inspecte.length,
                     isJson     : (inspecte.contentType || "").toLowerCase().indexOf("application/json") >= 0 ? true : false
                 };
+                if (result.headers) {
+                    _.remove(result.headers, {key: "cookie"});
+                }
                 if (result.isJson && inspecte.body) {
                     var objBody = JSON.parse(inspecte.body);
                     if (!_.isEmpty(objBody)) {
