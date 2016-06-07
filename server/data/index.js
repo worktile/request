@@ -14,6 +14,8 @@ module.exports = exports = function (config) {
     var Request = new request(sequelize), Inspect = new inspect(sequelize, Request);
     Request.sync({force: false});
     Inspect.sync({force: false});
+    Request.hasMany(Inspect, {foreignKey: 'requestId'});
+    Inspect.belongsTo(Request, {foreignKey: 'requestId'});
     return {
         request: Request,
         inspect: Inspect
