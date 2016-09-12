@@ -1,7 +1,7 @@
 var _ = require("lodash");
 
 var config = {
-    title: "纷云 Request"
+    title: "Worktile Request"
 };
 
 (function () {
