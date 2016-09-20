@@ -12,7 +12,7 @@ Node.js 0.12.x + Angular.js 1.4.x + sequelize(默认数据库 sqlite)
 
 1. 安装 Node.js、Git 客户端；
 
-1. 执行 `git clone https://github.com/lesschat/request` 获取代码到本地
+1. 执行 `git clone https://github.com/worktile/request` 获取代码到本地
 
 1. 执行 `npm install gulp -g` 和 `npm install bower -g` 安装 gulp 和 bower 工具；
 

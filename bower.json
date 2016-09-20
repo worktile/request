@@ -1,5 +1,5 @@
 {
-  "name": "Lesschat-Request",
+  "name": "Worktile-Request",
   "dependencies": {
     "bootstrap": "~3.3.5",
     "angular": "~1.4.5",

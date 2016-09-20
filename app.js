@@ -32,7 +32,7 @@ route(app, config, logger);
 if (config.env !== "test") {
     app.set('port', process.env.PORT || 8800);
     app.listen(app.get('port'), '0.0.0.0', function () {
-        logger.info('lesschat-request server listening on port %s', app.get('port'));
+        logger.info('worktile-request server listening on port %s', app.get('port'));
     });
 }
 if (config.env === 'production') {

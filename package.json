@@ -1,5 +1,5 @@
 {
-  "name": "lesschat-request",
+  "name": "worktile-request",
   "version": "1.0.4",
   "description": "log request and response",
   "main": "app.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lesschat/request.git"
+    "url": "git+https://github.com/worktile/request.git"
   },
   "keywords": [
     "request"
@@ -16,9 +16,9 @@
   "author": "YCTech",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lesschat/request/issues"
+    "url": "https://github.com/worktile/request/issues"
   },
-  "homepage": "https://github.com/lesschat/request#readme",
+  "homepage": "https://github.com/worktile/request#readme",
   "dependencies": {
     "body-parser": "^1.13.3",
     "commander": "^2.8.1",
