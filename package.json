@@ -1,6 +1,6 @@
 {
   "name": "worktile-request",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "log request and response",
   "main": "app.js",
   "scripts": {
